@@ -1,4 +1,7 @@
 const transactionUL = document.querySelector('#transactions');
+const incomeDisplay = document.querySelector('#money-plus');
+const expenseDisplay = document.querySelector('#money-minus');
+const balanceDisplay = document.querySelector('#balance');
 
 const dummyTransactions = [
     {id: 1, name: 'Bolo de brigadeiro', amount: -20},
@@ -10,10 +13,10 @@ const dummyTransactions = [
 const addTransactionIntoDOM = transaction => {
 
     const operator = transaction.amount < 0 ? '-' : '+';
-    const CSSCalss = transaction.amount < 0 ? 'minus' : 'plus';
+    const CSSClass = transaction.amount < 0 ? 'minus' : 'plus';
     const amountWithoutOperator = Math.abs(transaction.amount);
     const li = document.createElement('li');
-    li.classList.add(CSSCalss);
+    li.classList.add(CSSClass);
     li.innerHTML = `
         ${transaction.name} <span>${operator} R$ ${amountWithoutOperator}</span><button class="delete-btn">x</button>
     `;
@@ -24,7 +27,7 @@ const addTransactionIntoDOM = transaction => {
 const updateBalanceValues = () => {
     const transactionsAmounts = dummyTransactions
         .map(transaction => transaction.amount);
-    
+
     const total = transactionsAmounts
         .reduce((accumulator, number) => accumulator + number, 0)
         .toFixed(2);
@@ -34,15 +37,19 @@ const updateBalanceValues = () => {
         .reduce((accumulator, number) => accumulator + number, 0)
         .toFixed(2);
 
-    const expense = transactionsAmounts
+    const expense = Math.abs(transactionsAmounts
         .filter((value) => value < 0)
-        .reduce((accumulator, number) => accumulator + number, 0)
+        .reduce((accumulator, number) => accumulator + number, 0))
         .toFixed(2);
 
+    balanceDisplay.textContent = `R$ ${total}`;
+    incomeDisplay.textContent = `R$ ${income}`;
+    expenseDisplay.textContent = `R$ ${expense}`;
 };
 
 const init = () => {
     dummyTransactions.forEach(addTransactionIntoDOM);
+    updateBalanceValues();
 };
 
 
