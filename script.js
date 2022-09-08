@@ -19,12 +19,31 @@ const addTransactionIntoDOM = transaction => {
     `;
 
     transactionUL.append(li);
-}
+};
 
+const updateBalanceValues = () => {
+    const transactionsAmounts = dummyTransactions
+        .map(transaction => transaction.amount);
+    
+    const total = transactionsAmounts
+        .reduce((accumulator, number) => accumulator + number, 0)
+        .toFixed(2);
+
+    const income = transactionsAmounts
+        .filter((value) => value > 0)
+        .reduce((accumulator, number) => accumulator + number, 0)
+        .toFixed(2);
+
+    const expense = transactionsAmounts
+        .filter((value) => value < 0)
+        .reduce((accumulator, number) => accumulator + number, 0)
+        .toFixed(2);
+
+};
 
 const init = () => {
     dummyTransactions.forEach(addTransactionIntoDOM);
-}
+};
 
 
 init();
