@@ -12,7 +12,7 @@
 </p>
 
 
-## Pokedex JS
+## Controle Financeiro JS
 
 ## 🚀 Tecnologias
 
@@ -25,9 +25,9 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Projeto
 
-Pagina com cartas dos 150 Pokemons usando um API.
+Um controle financeiro em Java Script gravando os dados no local storage.
 
-Aula do canal [Roger Melo](https://www.youtube.com/watch?v=Uptu3NrBFBM)
+Aula do canal [Roger Melo](https://www.youtube.com/watch?v=xarRciYWT5Q)
 
 ## 🚀 Como Rodar
 
