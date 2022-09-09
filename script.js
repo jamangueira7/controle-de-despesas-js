@@ -51,6 +51,8 @@ const updateBalanceValues = () => {
 };
 
 const init = () => {
+
+    transactionUL.innerHTML = '';
     dummyTransactions.forEach(addTransactionIntoDOM);
     updateBalanceValues();
 };
@@ -61,6 +63,7 @@ init();
 const gererateID = () => Math.round(Math.random() * 1000);
 
 form.addEventListener('submit', event => {
+
     event.preventDefault();
 
     const transactionName = inputTransactionName.value.trim();
@@ -71,6 +74,15 @@ form.addEventListener('submit', event => {
         return;
     }
 
-    const transaction = { id: gererateID(), name: transactionName, amount: transactionAmount };
+    const transaction = {
+        id: gererateID(),
+        name: transactionName,
+        amount: Number(transactionAmount)
+    };
 
+    dummyTransactions.push(transaction);
+    init();
+
+    inputTransactionName.value = '';
+    inputTransactionAmount.value = '';
 });
